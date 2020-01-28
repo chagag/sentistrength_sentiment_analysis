@@ -30,7 +30,7 @@ df_text = d_1.iloc[:,0] #only text is relevant CHANGE THE NUMBER 3 in case your 
 #############################################################################################################################
 
 SentiStrengthLocation = os.getcwd()+'\SentiStrength.jar' #The location of SentiStrength on your computer
-SentiStrengthLanguageFolder =os.getcwd()+'\SentiStrength_Data' #The location of the unzipped SentiStrength data files on your computer
+SentiStrengthLanguageFolder =os.getcwd()+'\SentiStrength_Data\\' #The location of the unzipped SentiStrength data files on your computer
 
 if not os.path.isfile(SentiStrengthLocation):
     print("SentiStrength not found at: ", SentiStrengthLocation)
@@ -61,9 +61,12 @@ result = stdout_text
 text_rating = pd.read_csv(StringIO(result), sep=',', header = None)
 text_rating1 = text_rating.iloc[:, 0:2]
 
-df_sentiment_age = d_full.assign(sen_pos = text_rating1.iloc[:, 0])
+df_sentiment_age = d_1.assign(sen_pos = text_rating1.iloc[:, 0])
 df_sentiment_age = df_sentiment_age.assign(sen_neg = text_rating1.iloc[:, 1])
 
+df_sentiment_age.to_csv(r'result.txt',
+                                     index=None, header=True,
+                                     encoding="utf-8")
 
 #df_sentiment_age.to_csv(r'D:\\DownloadsDesktop\\Desktop\\Oxford',  ###change to your desired destination
 #                                     index=None, header=True,
