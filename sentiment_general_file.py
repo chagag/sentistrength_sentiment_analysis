@@ -30,7 +30,7 @@ df_text = d_1.iloc[:,0] #only text is relevant CHANGE THE NUMBER 3 in case your 
 #############################################################################################################################
 
 SentiStrengthLocation = os.getcwd()+'\SentiStrength.jar' #The location of SentiStrength on your computer
-SentiStrengthLanguageFolder =os.getcwd()+'\SentiStrength_Data' #The location of the unzipped SentiStrength data files on your computer
+SentiStrengthLanguageFolder =os.getcwd()+'\SentiStrength_Data\\' #The location of the unzipped SentiStrength data files on your computer
 
 if not os.path.isfile(SentiStrengthLocation):
     print("SentiStrength not found at: ", SentiStrengthLocation)
