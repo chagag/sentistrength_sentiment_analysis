@@ -23,3 +23,5 @@ for index, row in d.iterrows():
     vs = analyzer.polarity_scores(row[0])
     vs['text'] = row[0]
     df = df.append(vs, ignore_index=True)
+
+df.to_csv("output.csv",index=None, header=True,encoding="utf-8")
