@@ -30,9 +30,7 @@ df_text = d_1.iloc[:,0] #only text is relevant CHANGE THE NUMBER 3 in case your 
 #############################################################################################################################
 
 SentiStrengthLocation = os.getcwd()+'\SentiStrength.jar' #The location of SentiStrength on your computer
-SentiStrengthLanguageFolder ='C:\\Users\\agoldenberg\\Google Drive\\research\\general_emotion\\sentiment_analysis\\SentiStrength_Data\\'
-
-os.getcwd()+'\SentiStrength_Data\\' #The location of the unzipped SentiStrength data files on your computer
+SentiStrengthLanguageFolder =os.getcwd()+'\SentiStrength_Data\\' #The location of the unzipped SentiStrength data files on your computer
 
 if not os.path.isfile(SentiStrengthLocation):
     print("SentiStrength not found at: ", SentiStrengthLocation)
@@ -50,7 +48,7 @@ df_text1 = df_text1.str.replace('"', " ")
 df_texttext = df_text1
 conc_text = '\n'.join(list(df_texttext)) # list = [a,b,c]
 
-p = subprocess.Popen(shlex.split("java -jar '" + SentiStrengthLocation + "' stdin sentidata '" + SentiStrengthLanguageFolder + "'"),shell=True,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+p = subprocess.Popen(shlex.split("java -jar '" + SentiStrengthLocation + "' stdin sentidata '" + SentiStrengthLanguageFolder + "'"),stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
 
 
 b = bytes(conc_text.replace(" ","+"), 'utf-8')
@@ -63,9 +61,12 @@ result = stdout_text
 text_rating = pd.read_csv(StringIO(result), sep=',', header = None)
 text_rating1 = text_rating.iloc[:, 0:2]
 
-df_sentiment_age = d_full.assign(sen_pos = text_rating1.iloc[:, 0])
+df_sentiment_age = d_1.assign(sen_pos = text_rating1.iloc[:, 0])
 df_sentiment_age = df_sentiment_age.assign(sen_neg = text_rating1.iloc[:, 1])
 
+df_sentiment_age.to_csv(r'result.txt',
+                                     index=None, header=True,
+                                     encoding="utf-8")
 
 #df_sentiment_age.to_csv(r'D:\\DownloadsDesktop\\Desktop\\Oxford',  ###change to your desired destination
 #                                     index=None, header=True,
