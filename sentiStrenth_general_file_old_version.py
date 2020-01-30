@@ -65,10 +65,7 @@ text_rating1 = text_rating.iloc[:, 0:2]
 df_sentiment_age = d_1.assign(sen_pos = text_rating1.iloc[:, 0])
 df_sentiment_age = df_sentiment_age.assign(sen_neg = text_rating1.iloc[:, 1])
 
+df_sentiment_age.to_csv(r'result.txt',
+                                     index=None, header=True,
+                                     encoding="utf-8")
 
-#df_sentiment_age.to_csv(r'D:\\DownloadsDesktop\\Desktop\\Oxford',  ###change to your desired destination
-#                                     index=None, header=True,
-#                                     encoding="utf-8")
-
-#print("Finished! The results will be in: D:\\DownloadsDesktop\\Desktop\\Oxford")
->>>>>>> daf04ac0a43998bb7a6560ce27362e99c919d678:sentiStrenth_general_file.py
